@@ -20,6 +20,38 @@ In order to added some Scenario BDD, we can create new file feature in directory
 In order to translate the steps from Scenario BDD into executable actions, we write Java classes called Step Definitions
 in directory `src/test/java/steps`
 
+## API Key Configuration
+This project uses an `x-api-key` header for API authentication. Ensure you include this header in each request.
+
+## API Rate Limiting
+There is a limit of 100 API requests per day per API key.
+This limitation is due to the restrictions applied to the x-api-key header.
+
+If the limit is exceeded, the server will respond with:
+```
+HTTP 429 - Too Many Requests
+```
+
+## API Key Location
+The API key is stored in a `serenity config` file located at:
+```
+src/test/resources/serenity.conf
+```
+Example content:
+```
+environments {
+    default {
+         api.key = "your_api_key_here"
+     }
+    sit {
+         api.key = "your_api_key_here"
+    }
+    prod {
+         api.key = "your_api_key_here"
+   }
+}
+```
+
 ## Running Test Case with Default Environment
 
 ```
