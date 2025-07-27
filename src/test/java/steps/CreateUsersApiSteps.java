@@ -29,6 +29,7 @@ public class CreateUsersApiSteps extends UIInteractions {
                         when().
                         post(PathApi.CreateUsers.toString()).
                         then().
+                        spec(baseTest.getSpecResponse(201)).
                         extract().response().as(ResponseApiCreateUsers.class);
     }
 

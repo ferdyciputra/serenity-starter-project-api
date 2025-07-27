@@ -25,6 +25,7 @@ public class SingleUserApiSteps extends UIInteractions {
                         when().
                         get(PathApi.SingleUsers + "/" + id).
                         then().
+                        spec(baseTest.getSpecResponse(200)).
                         extract().response().as(ResponseApiSingleUsers.class);
     }
 
