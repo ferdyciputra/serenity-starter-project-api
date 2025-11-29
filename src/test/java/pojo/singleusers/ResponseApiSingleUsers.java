@@ -1,5 +1,8 @@
 package pojo.singleusers;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseApiSingleUsers {
     private Data data;
     private Support support;
