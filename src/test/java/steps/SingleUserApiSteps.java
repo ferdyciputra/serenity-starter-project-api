@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.steps.UIInteractions;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import pojo.singleusers.ResponseApiSingleUsers;
 import utilities.BaseTest;
@@ -15,13 +16,17 @@ public class SingleUserApiSteps extends UIInteractions {
     private String actualFirstName;
     private ResponseApiSingleUsers responseApiSingleUsers;
 
+    @Steps
+    LoginSteps loginSteps;
+
     @Given("User is already get single users with user id {string}")
     public void userIsAlreadyGetSingleUsersWithUserId(String id) {
+        String token = loginSteps.getTokenFromLogin();
         BaseTest baseTest = new BaseTest();
 
         responseApiSingleUsers =
                 given().
-                        spec(baseTest.getSpecRequest()).
+                        spec(baseTest.getSpecRequest(token)).
                         when().
                         get(PathApi.SingleUsers + "/" + id).
                         then().

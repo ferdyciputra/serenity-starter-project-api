@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.steps.UIInteractions;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import pojo.createusers.RequestApiCreateUsers;
 import pojo.createusers.ResponseApiCreateUsers;
@@ -17,14 +18,18 @@ public class CreateUsersApiSteps extends UIInteractions {
     private String actualJob;
     private ResponseApiCreateUsers responseApiCreateUsers;
 
+    @Steps
+    LoginSteps loginSteps;
+
     @Given("User is already create users with name {string} and job {string}")
     public void userIsAlreadyCreateUsersWithNameAndJob(String name, String job) {
+        String token = loginSteps.getTokenFromLogin();
         BaseTest baseTest = new BaseTest();
         RequestApiCreateUsers requestApiCreateUsers = new RequestApiCreateUsers(name, job);
 
         responseApiCreateUsers =
                 given().
-                        spec(baseTest.getSpecRequest()).
+                        spec(baseTest.getSpecRequest(token)).
                         body(requestApiCreateUsers).
                         when().
                         post(PathApi.CreateUsers.toString()).

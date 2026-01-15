@@ -3,7 +3,8 @@ package enums;
 public enum PathApi {
 
     CreateUsers("/api/users"),
-    SingleUsers("/api/users");
+    SingleUsers("/api/users"),
+    Login("/api/login");
 
     private final String path;
 

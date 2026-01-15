@@ -29,6 +29,17 @@ public class BaseTest {
         return requestSpecBuilder.build();
     }
 
+    public RequestSpecification getSpecRequest(String token) {
+        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+        requestSpecBuilder.setBaseUri(BASE_URL);
+        requestSpecBuilder.setContentType(ContentType.JSON);
+        requestSpecBuilder.setAccept(ContentType.JSON);
+        requestSpecBuilder.addHeader("Authorization", "Bearer " + token);
+        requestSpecBuilder.setConfig(getDefaultConfig());
+
+        return requestSpecBuilder.build();
+    }
+
     public ResponseSpecification getSpecResponse(Integer expectStatusCode) {
         ResponseSpecBuilder responseSpecBuilder = new ResponseSpecBuilder();
         responseSpecBuilder.expectStatusCode(expectStatusCode);
