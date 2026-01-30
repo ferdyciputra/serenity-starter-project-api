@@ -35,6 +35,7 @@ public class BaseTest {
         requestSpecBuilder.setContentType(ContentType.JSON);
         requestSpecBuilder.setAccept(ContentType.JSON);
         requestSpecBuilder.addHeader("Authorization", "Bearer " + token);
+        requestSpecBuilder.addHeader("x-api-key", X_API_KEY);
         requestSpecBuilder.setConfig(getDefaultConfig());
 
         return requestSpecBuilder.build();
